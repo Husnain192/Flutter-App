@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/screens/home/home.dart';
 import 'package:flutter_rpg/theme.dart';
@@ -18,14 +20,21 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool _showNextScreen = false;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(widget.duration, () {
+    _timer = Timer(widget.duration, () {
       if (!mounted) return;
       setState(() => _showNextScreen = true);
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

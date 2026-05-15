@@ -23,6 +23,7 @@ void main() {
     expect(find.text(readyText), findsNothing);
 
     await tester.pump(const Duration(milliseconds: 101));
+    await tester.pumpAndSettle();
 
     expect(find.text(readyText), findsOneWidget);
   });
